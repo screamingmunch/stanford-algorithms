@@ -60,7 +60,11 @@ let a = [1, 3, 5, 2, 4, 6],
     b = [6, 5, 4, 3, 2, 1];
 
 console.log(countInversionsBruteForce(a));
+console.log(a.toString());
 console.log(countInversionsBruteForce(b));
+console.log(b.toString());
 
 console.log(sortAndCountInversions(a));
+console.log(a.toString());
 console.log(sortAndCountInversions(b));
+console.log(b.toString());
