@@ -1,5 +1,7 @@
 'use strict';
 
+let swapCount, comparisonCount;
+
 function mergeSort(array, low = 0, mid = ~~(array.length / 2), high = array.length-1) {    
     if (high-low > 0) {
         mergeSort(array, low, ~~((low+mid)/2), mid);
@@ -18,17 +20,40 @@ function merge(array, low, mid, high) {
         let leftX = leftArray[leftPos],
             rightX = rightArray[rightPos];
 
-        if ((leftX !== undefined && rightX === undefined) || leftX <= rightX) {
+        comparisonCount++;
+        if ((leftX !== undefined && rightX === undefined) || leftX <= rightX) {        
+            swapCount++;
             array[i] = leftX;
             leftPos++;
         }
-        else if ((leftX === undefined && rightX !== undefined) || leftX > rightX) {
-            array[i] = rightX;
-            rightPos++;
+        else {
+            comparisonCount++;
+            if ((leftX === undefined && rightX !== undefined) || leftX > rightX) {
+                swapCount++;
+                array[i] = rightX;
+                rightPos++;
+            }
         }
     }
 }
 
+swapCount = 0; comparisonCount = 0;
 let array = 'MERGESORTEXAMPLE'.split('');
 mergeSort(array);
-console.log(array.join(''));
+console.log(`swaps: ${swapCount}`);
+console.log(`comparison: ${comparisonCount}`);
+console.log(`${array.join('')}\n`);
+
+swapCount = 0; comparisonCount = 0;
+array = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+mergeSort(array);
+console.log(`swaps: ${swapCount}`);
+console.log(`comparison: ${comparisonCount}`);
+console.log(`${array.join('')}\n`);
+
+swapCount = 0; comparisonCount = 0;
+array = 'ZYXWVUTSRQPONMLKJIHGFEDCBA'.split('');
+mergeSort(array);
+console.log(`swaps: ${swapCount}`);
+console.log(`comparison: ${comparisonCount}`);
+console.log(`${array.join('')}\n`);
