@@ -1,6 +1,6 @@
 'use strict';
 
-function countingSort(a, k, d, i) {    
+function countingSort(a, k, i) {    
     const n = array.length;
 
     let b = Array.from({length: n}, i => 0),
@@ -28,7 +28,7 @@ function getMthDigit(number, m) {
 
 function radixSort(a, d, k) {    
     for (let i=0; i < d; i++) {
-        a = countingSort(a, k, d, i);
+        a = countingSort(a, k, i);
     }
     return a;
 }
