@@ -7,19 +7,23 @@ function countingSort(a, k, d, i) {
         c = Array.from({length: k}, i => 0);
 
     for (let j=0; j < n; j++) {
-        let digit = parseInt(a[j].toString().padStart(d, '0').charAt(d-i-1), 10);
+        let digit = getMthDigit(a[j], i);
         c[digit]++;
     }
     for (let j=1; j < k; j++) {
         c[j] += c[j-1];
     }
     for (let j=n-1; j >= 0; j--) {
-        let digit = parseInt(a[j].toString().padStart(d, '0').charAt(d-i-1), 10);
+        let digit = getMthDigit(a[j], i);
         b[c[digit]-1] = a[j];
         c[digit]--;
     }
 
     return b;
+}
+
+function getMthDigit(number, m) {
+    return ~~(number / Math.pow(10, m)) % 10;
 }
 
 function radixSort(a, d, k) {    
